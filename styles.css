@@ -1,0 +1,200 @@
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and HTML take up full viewport */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100vh;
+    background-color: #87CEEB; /* Sky blue background */
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Game area spans full viewport */
+#gameArea {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: url('./bg-clouds.png') no-repeat center center;
+    background-size: cover;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align drops starting from the top */
+    align-items: center;
+}
+
+/* Selected letters at the top */
+#selectedLetters {
+    position: absolute;
+    top: 10px;
+    width: 80%;
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent */
+    color: black;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 50px;
+    z-index: 10;
+}
+
+/* Collected letters (at the bottom, with spacing) */
+#collectedLetters {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    font-size: 30px;
+    color: white;
+    flex-wrap: wrap; /* Wrap drops into rows if necessary */
+    padding: 10px;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.5); /* Slight background for readability */
+    border-radius: 10px;
+}
+
+/* Timer at the top-left */
+#timer {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 40px;
+    color: white;
+    z-index: 10;
+}
+
+/* Controls */
+#controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+select {
+    padding: 10px;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+/* Pause and restart buttons */
+#pauseButton, #restartButton {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 20px;
+    display: none;
+    z-index: 10;
+}
+
+/* Superpower message */
+#superpowerMessage {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 10px;
+    display: none;
+    z-index: 20;
+}
+
+/* Storm effects */
+.stormEffect {
+    filter: brightness(50%);
+}
+
+.stormMessage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    color: red;
+    display: none;
+    text-align: center;
+    z-index: 15;
+}
+
+/* Lightning bolts */
+.lightning {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: url('https://png.pngtree.com/png-vector/20221022/ourmid/pngtree-lightning-bolt-icon-thunder-and-flash-png-image_6384267.png') no-repeat;
+    background-size: cover;
+    z-index: 10;
+}
+
+/* Drops (falling letters) */
+.drop {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #6EC6FF;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    animation: fall linear;
+    z-index: 5;
+}
+
+/* Superpower-specific drops */
+.red { background: linear-gradient(red, darkred); }
+.green { background: linear-gradient(green, darkgreen); }
+.blue { background: linear-gradient(blue, darkblue); }
+
+/* Drop falling animation */
+@keyframes fall {
+    from { top: -50px; }
+    to { top: calc(100vh - 70px); } /* Falls to just above the collectedLetters */
+}
+
+/* Ensure letters stay in their place */
+#collectedLetters span {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
